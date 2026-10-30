@@ -2,7 +2,7 @@
 
 A full-stack, production-ready buy-and-sell marketplace built with the MERN stack.
 
-[![CI/CD](https://github.com/YOUR_USERNAME/localmart-buy-sell/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/localmart-buy-sell/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/omrathod856-max/localmart-buy-sell/actions/workflows/ci.yml/badge.svg)](https://github.com/omrathod856-max/localmart-buy-sell/actions/workflows/ci.yml)
 
 ## 🌐 Live URLs
 
