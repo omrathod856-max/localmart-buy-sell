@@ -22,17 +22,29 @@ app.use(helmet({
 }));
 
 // CORS configuration
+const normalizeUrl = (url) => (url ? url.trim().replace(/\/+$/, '') : '');
+
+const configuredOrigins = (process.env.CLIENT_URL || '')
+  .split(',')
+  .map(normalizeUrl)
+  .filter(Boolean);
+
 const allowedOrigins = [
-  process.env.CLIENT_URL,
+  ...configuredOrigins,
+  'https://localmart-buy-sell.vercel.app',
   'http://localhost:5173',
   'http://localhost:3000'
-].filter(Boolean);
+];
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, Postman, etc.)
+    // Allow requests with no origin (mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
+    
+    const normalizedOrigin = normalizeUrl(origin);
+    const isAllowed = allowedOrigins.some(allowed => normalizeUrl(allowed) === normalizedOrigin);
+
+    if (isAllowed) {
       return callback(null, true);
     }
     logger.warn(`CORS blocked origin: ${origin}`);
